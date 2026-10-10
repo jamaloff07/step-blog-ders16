@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Cavab yaz{% endblock %}
+
+{% block content %}
+  {# [DƏRS 11] praktikadan sonra müəllim #}
+  <h1>Cavab yaz</h1>
+
+  <div class="comment">
+    <p class="meta"><b>{{ parent.author.username|default:"qonaq" }}</b> yazıb:</p>
+    <p>{{ parent.text }}</p>
+  </div>
+
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Cavabı göndər</button>
+    <a href="{{ parent.post.get_absolute_url }}" class="btn btn-gray">Ləğv et</a>
+  </form>
+{% endblock %}

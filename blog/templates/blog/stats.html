@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Statistika{% endblock %}
+
+{% block content %}
+  <h1>Statistika</h1>
+  <ul class="list">
+    <li>Post sayı: <b>{{ post_count }}</b></li>
+    <li>Kateqoriya sayı: <b>{{ category_count }}</b></li>
+    {# [REFERANS 10] #}
+    <li>Teq sayı: <b>{{ tag_count }}</b></li>
+    <li>Şərh sayı: <b>{{ comment_count }}</b></li>
+    {% if top_post %}
+      <li>Ən çox oxunan:
+        <a href="{% url 'blog:post_detail' top_post.id %}">{{ top_post.title }}</a>
+        <span>{{ top_post.views }} baxış</span>
+      </li>
+    {% endif %}
+    {# [REFERANS 10] #}
+    {% if most_commented %}
+      <li>Ən çox şərh yazılan:
+        <a href="{% url 'blog:post_detail' most_commented.id %}">{{ most_commented.title }}</a>
+        <span>{{ most_commented.comment_count }} şərh</span>
+      </li>
+    {% endif %}
+  </ul>
+{% endblock %}

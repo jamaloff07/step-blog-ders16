@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Mənim postlarım{% endblock %}
+
+{% block content %}
+  {# [DƏRS 12] praktikadan sonra müəllim — author_posts.html-in əkizi #}
+  <h1>Mənim postlarım <small>({{ posts|length }})</small></h1>
+
+  <div class="grid">
+    {% for post in posts %}
+      {% include "blog/_post_card.html" %}
+    {% empty %}
+      <p class="empty">Hələ post yazmamısan. <a href="{% url 'blog:post_create' %}">Birincisini yaz</a>.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

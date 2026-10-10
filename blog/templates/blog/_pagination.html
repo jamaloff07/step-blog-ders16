@@ -1,0 +1,15 @@
+{# [DƏRS 13] səhifələmə düymələri. paginate_by yazılan ListView template-ə page_obj göndərir #}
+{# [REFERANS 13] — linklərə &q= əlavə olundu ki, 2-ci səhifədə axtarış itməsin #}
+{% if page_obj.has_other_pages %}
+  <p class="pagination">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">← Əvvəlki</a>
+    {% endif %}
+
+    <b>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</b>
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Növbəti →</a>
+    {% endif %}
+  </p>
+{% endif %}

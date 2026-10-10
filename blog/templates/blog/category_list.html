@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Kateqoriyalar{% endblock %}
+
+{% block content %}
+  {# [PRAKTİKA 8] #}
+  <h1>Kateqoriyalar</h1>
+
+  <ul class="list">
+    {% for category in categories %}
+      <li>
+        <a href="{% url 'blog:category_detail' category.slug %}">{{ category.name }}</a>
+        {# [EV 10] tapşırıq 2 — post_count view-dakı annotate-dən gəlir #}
+        <b>({{ category.post_count }})</b>
+        <span>{{ category.description }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

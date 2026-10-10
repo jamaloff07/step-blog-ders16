@@ -1,0 +1,12 @@
+[project]
+name = "step-blog"
+version = "0.1.0"
+description = "STEP IT Academy — blog layihəsi (Django + DRF)"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.2,<6",
+    "djangorestframework>=3.16",
+    "djangorestframework-simplejwt>=5.5.1",
+    "drf-spectacular>=0.30.0",
+    "pillow>=11",
+]

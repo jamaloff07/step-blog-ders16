@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Qeydiyyat{% endblock %}
+
+{% block content %}
+  {# [DƏRS 12] #}
+  <h1>Qeydiyyat</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Qeydiyyatdan keç</button>
+  </form>
+  <p>Artıq hesabın var? <a href="{% url 'accounts:login' %}">Daxil ol</a></p>
+{% endblock %}

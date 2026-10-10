@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <article class="post">
+    <p class="meta">
+      {# [DƏRS 10] .slug və .name #}
+      <a href="{% url 'blog:category_detail' post.category.slug %}" class="badge">{{ post.category.name }}</a>
+      {{ post.created_at|date:"d F Y" }} ·
+      {# [DƏRS 12] .username #}
+      <a href="{% url 'blog:author_posts' post.author.username %}">@{{ post.author.username }}</a>
+      · {{ post.content|wordcount }} söz
+      · {{ post.views }} baxış
+    </p>
+    <h1>{{ post.title }}</h1>
+
+    {# [DƏRS 10] #}
+    {% if post.image %}
+      <img class="post-img" src="{{ post.image.url }}" alt="{{ post.title }}">
+    {% endif %}
+
+    {{ post.content|linebreaks }}
+
+    {# [PRAKTİKA 10] #}
+    <p class="tags">
+      {% for tag in post.tags.all %}
+        <a href="{% url 'blog:tag_detail' tag.slug %}" class="tag">#{{ tag.name }}</a>
+      {% endfor %}
+    </p>
+  </article>
+
+  {# [EV 13] tapşırıq 2 — bəyənmə. Vəziyyəti dəyişən əməliyyat → POST → form #}
+  <form method="post" action="{% url 'blog:post_like' post.id %}" class="actions">
+    {% csrf_token %}
+    {% if user in post.likes.all %}
+      <button type="submit" class="btn btn-red">♥ Bəyənmişəm</button>
+    {% else %}
+      <button type="submit" class="btn btn-gray">♡ Bəyən</button>
+    {% endif %}
+    <b>{{ post.likes.count }}</b> bəyənmə
+  </form>
+
+  {# [PRAKTİKA 12] düymələri yalnız müəllif görür. (View-dakı yoxlama yenə də lazımdır!) #}
+  {% if user == post.author %}
+    <p class="actions">
+      <a href="{% url 'blog:post_edit' post.id %}" class="btn btn-gray">Redaktə et</a>
+      <a href="{% url 'blog:post_delete' post.id %}" class="btn btn-red">Sil</a>
+    </p>
+  {% endif %}
+
+  <section class="comments">
+    <h2>Şərhlər <small>({{ comments|length }})</small></h2>
+    {% for comment in comments %}
+      <div class="comment">
+        <p class="meta"><b>{{ comment.author.username|default:"qonaq" }}</b> · {{ comment.created_at|date:"d.m.Y H:i" }}</p>
+        <p>{{ comment.text }}</p>
+
+        {# [PRAKTİKA 11] bu şərhin cavabları + cavab linki #}
+        {% for reply in comment.replies.all %}
+          <div class="comment reply">
+            <p class="meta"><b>{{ reply.author.username|default:"qonaq" }}</b> · {{ reply.created_at|date:"d.m.Y H:i" }}</p>
+            <p>{{ reply.text }}</p>
+          </div>
+        {% endfor %}
+        <p class="meta"><a href="{% url 'blog:comment_reply' comment.id %}">Cavab yaz</a></p>
+
+        {# [REFERANS 12] — öz şərhini silmək. Silmək POST ilə olur, ona görə link yox, kiçik form #}
+        {% if user == comment.author %}
+          <form method="post" action="{% url 'blog:comment_delete' comment.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-red">Şərhi sil</button>
+          </form>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p class="empty">Hələ şərh yoxdur. Birinci sən yaz!</p>
+    {% endfor %}
+
+    {# [DƏRS 11] şərh formu #}
+    <h2>Şərh yaz</h2>
+    {# [EV 12] tapşırıq 2 — formu yalnız giriş edən görür #}
+    {% if user.is_authenticated %}
+      <form method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Göndər</button>
+      </form>
+    {% else %}
+      <p class="empty">Şərh yazmaq üçün <a href="{% url 'accounts:login' %}">daxil ol</a>.</p>
+    {% endif %}
+  </section>
+
+  {# [REFERANS 10] oxşar postlar (tələbəyə verilmir) #}
+  {% if similar %}
+    <h2>Oxşar postlar</h2>
+    <ul class="list">
+      {% for item in similar %}
+        <li><a href="{% url 'blog:post_detail' item.id %}">{{ item.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p><a href="{% url 'blog:post_list' %}">← Bütün postlar</a></p>
+{% endblock %}

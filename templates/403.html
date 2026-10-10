@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}İcazə yoxdur{% endblock %}
+
+{% block content %}
+  {# [EV 12] tapşırıq 3 — PermissionDenied qalxanda Django bu faylı özü tapıb göstərir #}
+  <h1>403 — İcazə yoxdur</h1>
+  <p class="empty">Bu səhifə sənin deyil. Yalnız müəllif öz postunu dəyişə bilər.</p>
+  <p><a href="{% url 'blog:post_list' %}">← Ana səhifə</a></p>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Blog{% endblock %} · STEP Blog</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  {# [DƏRS 8] navbar əvvəlcə burada yazılır. [DƏRS 8] praktikadan sonra — ayrıca fayla köçürüldü #}
+  {% include "partials/navbar.html" %}
+
+  <main class="container">
+    {# [DƏRS 11] view-dakı messages.success(...) burada bir dəfə göstərilir, sonra itir #}
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      STEP IT Academy · Blog layihəsi
+      {# [EV 8] bonus — il avtomatik yazılır #}
+      · {% now "Y" %}
+    </div>
+  </footer>
+</body>
+</html>

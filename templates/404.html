@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Tapılmadı{% endblock %}
+
+{% block content %}
+  {# [EV 13] tapşırıq 3 — yalnız DEBUG = False olanda görünür (DEBUG = True-da Django sarı səhifə göstərir) #}
+  <h1>404 — Səhifə tapılmadı</h1>
+  <p class="empty">Axtardığın səhifə yoxdur və ya silinib.</p>
+  <p><a href="{% url 'blog:post_list' %}">← Ana səhifə</a></p>
+{% endblock %}

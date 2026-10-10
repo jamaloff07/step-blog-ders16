@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+  {# [EV 12] bonus — profil; "user" dəyişəni hər template-də hazırdır #}
+  <h1>@{{ user.username }}</h1>
+  <ul class="list">
+    <li>Email: <b>{{ user.email|default:"yazılmayıb" }}</b></li>
+    <li>Qeydiyyat tarixi: <b>{{ user.date_joined|date:"d.m.Y" }}</b></li>
+    <li>Post sayı: <b>{{ post_count }}</b></li>
+    <li>Şərh sayı: <b>{{ comment_count }}</b></li>
+  </ul>
+  <p class="actions">
+    <a href="{% url 'blog:my_posts' %}" class="btn">Mənim postlarım</a>
+    <a href="{% url 'accounts:password_change' %}" class="btn btn-gray">Parolu dəyiş</a>
+  </p>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+  {# [DƏRS 11] eyni template həm "yeni post", həm "redaktə" üçün işləyir #}
+  <h1>{{ page_title }}</h1>
+
+  {# method="post" → məlumat URL-də görünmür. action yoxdur → form öz ünvanına göndərilir #}
+  {# [REFERANS 11] (tələbəyə verilmir): enctype — fayl (şəkil) göndərmək üçün mütləqdir #}
+  <form method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}          {# gizli təhlükəsizlik açarı — onsuz 403 #}
+    {{ form.as_p }}           {# bütün sahələr: label + input + xətalar #}
+    <button type="submit" class="btn">Yadda saxla</button>
+    <a href="{% url 'blog:post_list' %}" class="btn btn-gray">Ləğv et</a>
+  </form>
+{% endblock %}

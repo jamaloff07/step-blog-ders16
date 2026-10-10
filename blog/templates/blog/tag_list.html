@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Teqlər{% endblock %}
+
+{% block content %}
+  {# [EV 10] bonus #}
+  <h1>Teqlər</h1>
+
+  <ul class="list">
+    {% for tag in tags %}
+      <li>
+        <a href="{% url 'blog:tag_detail' tag.slug %}">#{{ tag.name }}</a>
+        <b>({{ tag.post_count }})</b>
+      </li>
+    {% empty %}
+      <li>Hələ teq yoxdur.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

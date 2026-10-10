@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}@{{ name }}{% endblock %}
+
+{% block content %}
+  {# [EV 8] tapşırıq 2 #}
+  <h1>@{{ name }} — postları</h1>
+
+  <div class="grid">
+    {% for post in posts %}
+      {% include "blog/_post_card.html" %}
+    {% empty %}
+      <p class="empty">Bu müəllifin hələ postu yoxdur.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

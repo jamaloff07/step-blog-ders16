@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Bəyəndiklərim{% endblock %}
+
+{% block content %}
+  {# [REFERANS 13] #}
+  <h1>Bəyəndiklərim <small>({{ posts|length }})</small></h1>
+
+  <div class="grid">
+    {% for post in posts %}
+      {% include "blog/_post_card.html" %}
+    {% empty %}
+      <p class="empty">Hələ heç bir postu bəyənməmisən.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

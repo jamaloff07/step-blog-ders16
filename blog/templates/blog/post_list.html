@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Postlar{% endblock %}
+
+{% block content %}
+  {# [DƏRS 13] praktikadan sonra müəllim — axtarış edilibsə başlıq dəyişir #}
+  {# paginator.count = BÜTÜN postların sayı (posts|length yalnız bu səhifədəkiləri sayardı) #}
+  {% if q %}
+    <h1>“{{ q }}” <small>({{ paginator.count }} nəticə)</small></h1>
+  {% else %}
+    <h1>Bütün postlar <small>({{ paginator.count }})</small></h1>
+  {% endif %}
+
+  <div class="grid">
+    {% for post in posts %}
+      {% include "blog/_post_card.html" %}
+    {% empty %}
+      <p class="empty">Heç nə tapılmadı.</p>
+    {% endfor %}
+  </div>
+
+  {# [DƏRS 13] #}
+  {% include "blog/_pagination.html" %}
+{% endblock %}

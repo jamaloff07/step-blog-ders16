@@ -1,0 +1,151 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "nigar",
+      "password": "pbkdf2_sha256$1000000$r7BKDy1sodAkMqzcBIIEeb$l2TqkT+D3o3XuK2EsP0uDeuvLjNjSAS9gIL4TDmC854=",
+      "email": "nigar@step.az",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2026-09-01T06:00:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "murad",
+      "password": "pbkdf2_sha256$1000000$jfhRDUi2UGLGYVhSbg5JYi$MV068IA+VtSi+QwlNhUpiq49dsiZ82NMrubHSbHNH/M=",
+      "email": "murad@step.az",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2026-09-01T06:00:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "aysel",
+      "password": "pbkdf2_sha256$1000000$dLhgLHJboxgrrY7pZmqNF4$uaiGp+MM202/AyTtB4AGVt1hPqISRSmsW8CwGHTZ4E0=",
+      "email": "aysel@step.az",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2026-09-01T06:00:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "kamran",
+      "password": "pbkdf2_sha256$1000000$Q0srMbfZUW0xxLEO8VZkPH$Y2HKo5Hmn9VJpi6rXr8Glj6UzGqU1FJydg7ksrRTQ30=",
+      "email": "kamran@step.az",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "date_joined": "2026-09-01T06:00:00Z"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Proqramlaşdırma",
+      "slug": "proqramlasdirma",
+      "description": "Kod, dillər və alətlər"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Oyunlar",
+      "slug": "oyunlar",
+      "description": "Oyunlar, taktikalar və maraqlı faktlar"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Kitablar",
+      "slug": "kitablar",
+      "description": "Oxuduqlarımız və tövsiyələr"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "title": "Python-da ilk addım",
+      "author": 1,
+      "category": 1,
+      "content": "Python öyrənməyə haradan başlamaq lazımdır? Əvvəlcə dəyişənlər, sonra şərtlər və döngülər. Ən vacibi isə hər gün bir az kod yazmaqdır.",
+      "is_published": true,
+      "views": 0,
+      "created_at": "2026-09-01T06:00:00Z",
+      "is_featured": false
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "title": "Minecraft-da redstone ilə kalkulyator",
+      "author": 2,
+      "category": 2,
+      "content": "Redstone əslində elektrik dövrəsidir. AND, OR və NOT qapılarından istifadə edib oyunun içində işləyən kalkulyator qurmaq olur.",
+      "is_published": true,
+      "views": 0,
+      "created_at": "2026-09-05T06:00:00Z",
+      "is_featured": false
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "title": "Git nədir və niyə lazımdır?",
+      "author": 1,
+      "category": 1,
+      "content": "Git kodun tarixçəsini saxlayır. Səhv etsən, köhnə versiyaya qayıda bilərsən. GitHub isə bu tarixçəni internetdə saxlayan saytdır.",
+      "is_published": true,
+      "views": 0,
+      "created_at": "2026-09-09T06:00:00Z",
+      "is_featured": true
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 4,
+    "fields": {
+      "title": "Harri Potter kitablarını hansı ardıcıllıqla oxumalı?",
+      "author": 3,
+      "category": 3,
+      "content": "Yeddi kitabın hamısını çıxış ilinə görə oxumaq ən yaxşısıdır. Filmlərə isə kitabları bitirəndən sonra baxmağı məsləhət görürəm.",
+      "is_published": true,
+      "views": 0,
+      "created_at": "2026-09-12T06:00:00Z",
+      "is_featured": false
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 5,
+    "fields": {
+      "title": "FIFA-da ən yaxşı taktika",
+      "author": 2,
+      "category": 2,
+      "content": "4-3-3 sxemi hücum üçün, 5-3-2 isə müdafiə üçün yaxşıdır. Amma ən vacibi oyunçuların formasıdır.",
+      "is_published": true,
+      "views": 0,
+      "created_at": "2026-09-15T06:00:00Z",
+      "is_featured": false
+    }
+  }
+]

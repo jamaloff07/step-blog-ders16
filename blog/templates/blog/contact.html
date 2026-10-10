@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Əlaqə{% endblock %}
+
+{% block content %}
+  <h1>Əlaqə</h1>
+  <ul class="list">
+    <li>Email: <b>blog@step.az</b></li>
+    <li>Telefon: <b>+994 12 345 67 89</b></li>
+  </ul>
+
+  {# [REFERANS 11] #}
+  <h2>Bizə yaz</h2>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Göndər</button>
+  </form>
+{% endblock %}

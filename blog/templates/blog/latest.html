@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Son postlar{% endblock %}
+
+{% block content %}
+  {# [EV 8] bonus — forloop.counter 1-dən sayır #}
+  <h1>Son 3 post</h1>
+
+  <ol class="list">
+    {% for post in posts %}
+      <li>
+        {{ forloop.counter }}.
+        <a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
+        <span>{{ post.created_at|date:"d.m.Y" }}</span>
+      </li>
+    {% endfor %}
+  </ol>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+  {# [PRAKTİKA 8] #}
+  <h1>{{ category.name }}</h1>
+  <p class="lead">{{ category.description }}</p>
+
+  <div class="grid">
+    {% for post in posts %}
+      {% include "blog/_post_card.html" %}
+    {% empty %}
+      <p class="empty">Bu kateqoriyada hələ post yoxdur.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

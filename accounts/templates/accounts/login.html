@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Giriş{% endblock %}
+
+{% block content %}
+  {# [DƏRS 12] "form" dəyişənini LoginView özü göndərir #}
+  <h1>Giriş</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Daxil ol</button>
+  </form>
+  <p>Hesabın yoxdur? <a href="{% url 'accounts:register' %}">Qeydiyyatdan keç</a></p>
+{% endblock %}

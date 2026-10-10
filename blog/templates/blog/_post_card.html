@@ -1,0 +1,34 @@
+{# [DƏRS 8] bir postun kartı — siyahı, kateqoriya, teq və müəllif səhifələrində təkrar istifadə olunur #}
+{# Bu faylı {% include %} edən template-də "post" dəyişəni olmalıdır #}
+<article class="card">
+  {# [DƏRS 10] şəkil varsa göstər — şəkilsiz postda .url xəta verir, ona görə if #}
+  {% if post.image %}
+    <img class="card-img" src="{{ post.image.url }}" alt="{{ post.title }}">
+  {% endif %}
+
+  {# [EV 9] tapşırıq 2 — ★ Seçilmiş #}
+  {% if post.is_featured %}<p class="featured">★ Seçilmiş</p>{% endif %}
+  <p class="meta">
+    {# [DƏRS 10] post.category artıq obyektdir: .slug linkə, .name ekrana #}
+    <a href="{% url 'blog:category_detail' post.category.slug %}" class="badge">{{ post.category.name }}</a>
+    {{ post.created_at|date:"d.m.Y" }}
+    {# [EV 10] tapşırıq 3 #}
+    · {{ post.comments.count }} şərh
+  </p>
+  <h2><a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a></h2>
+  <p>{{ post.content|truncatewords:12 }}</p>
+
+  {# [PRAKTİKA 10] postun teqləri #}
+  <p class="tags">
+    {% for tag in post.tags.all %}
+      <a href="{% url 'blog:tag_detail' tag.slug %}" class="tag">#{{ tag.name }}</a>
+    {% endfor %}
+  </p>
+
+  <p class="author">
+    {# [DƏRS 12] post.author artıq User obyektidir → .username #}
+    <a href="{% url 'blog:author_posts' post.author.username %}">@{{ post.author.username }}</a>
+    {# [REFERANS 12] #}
+    {% if not post.is_published %}<span class="draft">· qaralama</span>{% endif %}
+  </p>
+</article>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Postu sil{% endblock %}
+
+{% block content %}
+  {# [EV 11] tapşırıq 1 — silmək həmişə POST ilə olur, linklə (GET) yox #}
+  <h1>Postu sil</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    <p>“<b>{{ post.title }}</b>” postunu silmək istədiyinə əminsən?</p>
+    <button type="submit" class="btn btn-red">Bəli, sil</button>
+    <a href="{{ post.get_absolute_url }}" class="btn btn-gray">Xeyr, qayıt</a>
+  </form>
+{% endblock %}
